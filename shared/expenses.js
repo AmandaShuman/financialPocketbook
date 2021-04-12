@@ -37,22 +37,26 @@ export const EXPENSES = [
   },
   {
     id: 9,
-    name: 'Obligations'
+    name: 'Pets'
   },
   {
     id: 10,
-    name: 'Business Expenses'
+    name: 'Obligations'
   },
   {
     id: 11,
-    name: 'Entertainment'
+    name: 'Business Expenses'
   },
   {
     id: 12,
-    name: 'Subscriptions'
+    name: 'Entertainment'
   },
   {
     id: 13,
+    name: 'Subscriptions'
+  },
+  {
+    id: 14,
     name: 'Miscellaneous'
   }
 ];
