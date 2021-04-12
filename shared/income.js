@@ -33,6 +33,6 @@ export const INCOME = [
     },
     {
         id: 8,
-        name: 'Other'
+        name: 'Other Income'
     }
 ];

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
-import { Card } from 'react-native-elements';
+import { View, Text, FlatList } from 'react-native';
+import { Card, ListItem } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
 import { INCOME } from '../shared/income';
 
@@ -27,9 +27,24 @@ class Income extends Component {
   }
 
   render() {
+
+    const { navigate } = this.props.navigation;
+    const renderIncomeItem = ({ item }) => {
+      return (
+        <ListItem
+          title={item.name}
+        />
+      )
+    };
+
     return (
       <ScrollView>
         <Summary />
+        <FlatList
+          data={this.state.income}
+          renderItem={renderIncomeItem}
+          keyextractor={item => item.id.toString()}
+        />
       </ScrollView>
     );
   }
