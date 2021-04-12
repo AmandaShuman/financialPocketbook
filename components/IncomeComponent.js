@@ -4,7 +4,7 @@ import { Card, ListItem } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
 import { INCOME } from '../shared/income';
 
-const Summary = () => {
+const IncomeSummary = () => {
   return (
     <Card>
       <Text style={{ margin: 10 }}>
@@ -39,7 +39,7 @@ class Income extends Component {
 
     return (
       <ScrollView>
-        <Summary />
+        <IncomeSummary />
         <FlatList
           data={this.state.income}
           renderItem={renderIncomeItem}
