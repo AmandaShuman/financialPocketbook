@@ -8,7 +8,7 @@ const IncomeSummary = () => {
   return (
     <Card>
       <Text style={{ margin: 10 }}>
-        The first step to getting your finances in order is to figure out how much money you have to work with. Take some time to enter in the money you are receiving.
+        The first step to getting your finances in order is to figure out how much money you have to work with. Take some time to enter in the money you are receiving. Click on an expense name to start entering your expenses.
       </Text>
     </Card>
   );
@@ -43,7 +43,7 @@ class Income extends Component {
         <FlatList
           data={this.state.income}
           renderItem={renderIncomeItem}
-          keyextractor={item => item.id.toString()}
+          keyExtractor={item => item.id.toString()}
         />
       </ScrollView>
     );

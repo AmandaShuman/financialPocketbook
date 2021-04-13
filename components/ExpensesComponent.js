@@ -32,7 +32,7 @@ class Expenses extends Component {
       return (
         <ListItem
           title={item.name}
-          //onPress={() => navigate('ExpenseInfo', { expenseId: item.id })}
+          onPress={() => navigate('ExpenseInfo', { expenseId: item.id })}
         />
       )
     };
@@ -43,7 +43,7 @@ class Expenses extends Component {
         <FlatList
           data={this.state.expenses}
           renderItem={renderExpenseItem}
-          keyextractor={item => item.id.toString()}
+          keyExtractor={item => item.id.toString()}
         />
       </View>
 		);
