@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
 import { Text, View, FlatList } from 'react-native';
-import { Card } from 'react-native-elements';
+import { Card, ListItem } from 'react-native-elements';
 import { EXPENSES } from '../shared/expenses';
 import { EXPENSE_LISTS } from '../shared/expenseLists';
 
-function RenderExpenses({expense}) {
+function RenderExpenses({ expense }) {
   if (expense) {
     return (
-      <Card
-        featuredTitle={expense.name}
-      >
+      console.log("expenses in RenderExpenses", expense),
+      <Card>
         <Text>
-          
-        </Text>  
+          {expense.name}
+        </Text>
       </Card>
     );
   }
@@ -20,17 +19,18 @@ function RenderExpenses({expense}) {
 }
 
 
-function RenderExpenseItems({expenseDetail}) {
-  
-  const renderDetails = ({item}) => {
+function RenderExpenseItems({ expenseDetail }) {
+
+  const renderDetails = ({ item }) => {
     return (
-      <View>
-        <Text>{item.name}</Text>
-      </View>
+      <ListItem
+        title={item.name}
+      />
     );
   };
 
   return (
+    console.log("details for expenses", expenseDetail),
     <FlatList
       data={expenseDetail}
       renderItem={renderDetails}
@@ -56,7 +56,7 @@ class ExpenseInfo extends Component {
 
     const expenseId = this.props.navigation.getParam('expenseId');
     const expense = this.state.expense.find(expense => expense.id === expenseId);
-    const expenseDetail = this.state.expenseLists.filter(expense => expense.expenseId === expenseId);
+    const expenseDetail = this.state.expenseLists.filter(expense => expense.expensesId === expenseId);
 
     return (
       <View>
