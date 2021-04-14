@@ -6,6 +6,7 @@ import { createAppContainer } from 'react-navigation';
 import Home from './HomeComponent';
 import Income from './IncomeComponent';
 import Expenses from './ExpensesComponent';
+import ExpenseInfo from './ExpensesDetailComponent';
 
 const HomeNavigator = createStackNavigator (
   {
@@ -43,7 +44,8 @@ const IncomeNavigator = createStackNavigator(
 
 const ExpensesNavigator = createStackNavigator(
   {
-    Expenses: { screen: Expenses }
+    Expenses: { screen: Expenses },
+    ExpenseInfo: { screen: ExpenseInfo }
   },
   {
     defaultNavigationOptions: {
