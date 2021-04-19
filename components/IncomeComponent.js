@@ -28,7 +28,6 @@ class Income extends Component {
 
   render() {
 
-    const { navigate } = this.props.navigation;
     const renderIncomeItem = ({ item }) => {
       return (
         <ListItem
