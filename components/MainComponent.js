@@ -8,6 +8,7 @@ import Home from './HomeComponent';
 import Income from './IncomeComponent';
 import Expenses from './ExpensesComponent';
 import ExpenseInfo from './ExpensesDetailComponent';
+import Feedback from './FeedbackComponent';
 
 const HomeNavigator = createStackNavigator (
   {
@@ -79,6 +80,29 @@ const ExpensesNavigator = createStackNavigator(
   }
 );
 
+const FeedbackNavigator = createStackNavigator(
+  {
+    Feedback: { screen: Feedback }
+  },
+  {
+    defaultNavigationOptions: ({ navigation }) => ({
+      headerStyle: {
+        backgroundColor: '#168118'
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        color: '#fff'
+      },
+      headerLeft: <Icon
+        name='comment'
+        type='font-awesome'
+        iconStyle={styles.stackIcon}
+        onPress={() => navigation.toggleDrawer()}
+      />
+    })
+  }
+);
+
 const MainNavigator = createDrawerNavigator (
   {
     Home: { 
@@ -119,10 +143,23 @@ const MainNavigator = createDrawerNavigator (
           />
         )
       }
+    },
+    Feedback: {
+      screen: FeedbackNavigator,
+      navigationOptions: {
+        drawerIcon: ({ tintColor }) => (
+          <Icon
+            name='comment'
+            type='font-awesome'
+            size={24}
+            color={tintColor}
+          />
+        )
+      }
     }
   },
   {
-    drawerBackgroundColor: '#036704'
+    drawerBackgroundColor: '#3e9c35'
   }
 );
 

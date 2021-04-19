@@ -8,7 +8,7 @@ function RenderExpenses({ expense }) {
   if (expense) {
     return (
       console.log("expenses in RenderExpenses", expense),
-      <Card>
+      <Card >
         <Text>
           {expense.name}
         </Text>
