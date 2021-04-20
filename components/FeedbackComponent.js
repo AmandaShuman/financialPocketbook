@@ -2,15 +2,17 @@ import React, { Component } from 'react';
 import { ScrollView, Text, View, Button, Modal, StyleSheet } from 'react-native';
 import { Card, Input } from 'react-native-elements';
 
+const getInitialState = () => ({
+  showModal: false,
+  feedback: '',
+  email: ''
+});
+
 class Feedback extends Component {
   constructor(props) {
     super(props)
 
-    this.state = {
-      showModal: false,
-      feedback: '',
-      email: ''
-    };
+    this.state = getInitialState()
   }
 
   toggleModal() {
@@ -18,11 +20,7 @@ class Feedback extends Component {
   }
 
   resetForm() {
-    this.setState({
-      showModal: false,
-      feedback: '',
-      email: ''
-    });
+    this.setState(getInitialState())
   }
 
   static navigationOptions = {
