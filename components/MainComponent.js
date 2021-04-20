@@ -10,12 +10,12 @@ import Expenses from './ExpensesComponent';
 import ExpenseInfo from './ExpensesDetailComponent';
 import Feedback from './FeedbackComponent';
 
-const HomeNavigator = createStackNavigator (
+const HomeNavigator = createStackNavigator(
   {
     Home: { screen: Home }
   },
   {
-    defaultNavigationOptions: ({navigation}) => ({
+    defaultNavigationOptions: ({ navigation }) => ({
       headerStyle: {
         backgroundColor: '#168118'
       },
@@ -103,12 +103,12 @@ const FeedbackNavigator = createStackNavigator(
   }
 );
 
-const MainNavigator = createDrawerNavigator (
+const MainNavigator = createDrawerNavigator(
   {
-    Home: { 
+    Home: {
       screen: HomeNavigator,
       navigationOptions: {
-        drawerIcon: ({tintColor}) => (
+        drawerIcon: ({ tintColor }) => (
           <Icon
             name='home'
             type='font-awesome'
@@ -116,9 +116,9 @@ const MainNavigator = createDrawerNavigator (
             color={tintColor}
           />
         )
-      } 
+      }
     },
-    Income: { 
+    Income: {
       screen: IncomeNavigator,
       navigationOptions: {
         drawerIcon: ({ tintColor }) => (
@@ -131,7 +131,7 @@ const MainNavigator = createDrawerNavigator (
         )
       }
     },
-    Expenses: { 
+    Expenses: {
       screen: ExpensesNavigator,
       navigationOptions: {
         drawerIcon: ({ tintColor }) => (
@@ -159,7 +159,12 @@ const MainNavigator = createDrawerNavigator (
     }
   },
   {
-    drawerBackgroundColor: '#3e9c35'
+    drawerBackgroundColor: '#3e9c35',
+
+    contentOptions: {
+      activeTintColor: "#FFF",
+      inactiveTintColor: "#7B32A0",
+    },
   }
 );
 
