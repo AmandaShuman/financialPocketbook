@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { ScrollView, Text, View, Button, Modal, StyleSheet } from 'react-native';
+import { ScrollView, Text, TextInput, View, Button, StyleSheet, Alert } from 'react-native';
 import { Card, Input } from 'react-native-elements';
 
 const getInitialState = () => ({
-  showModal: false,
   feedback: '',
   email: ''
 });
@@ -15,8 +14,29 @@ class Feedback extends Component {
     this.state = getInitialState()
   }
 
-  toggleModal() {
-    this.setState({ showModal: !this.state.showModal })
+  handleFeedback() {
+    console.log(JSON.stringify(this.state));
+    this.handleAlert();
+  }
+
+  handleAlert() {
+    return Alert.alert(
+      'Feedback Summary',
+      `Feedback: ${this.state.feedback}\n Email:${this.state.email}\n
+      Thank you for your feedback!`,
+      [
+        { //cancel button
+          text: 'Cancel',
+          onPress: () => this.resetForm(),
+          style: 'cancel'
+        },
+        { //okay button
+          text: 'OK',
+          onPress: () => this.resetForm()
+        },
+      ],
+      { cancelable: false }
+    )
   }
 
   resetForm() {
@@ -57,12 +77,14 @@ class Feedback extends Component {
               containerStyle={{ padding: 5 }}
               onChangeText={email => this.setState({ email: email })}
               value={this.state.email}
+              keyboardType='email-address'
+              type='email'
             />
           </View>
           <View style={{ margin: 10 }}>
             <Button
               onPress={() => {
-                this.toggleModal();
+                this.handleFeedback();
               }}
               color='#157811'
               raised
@@ -70,26 +92,6 @@ class Feedback extends Component {
             />
           </View>
         </Card>
-        <Modal
-          animationType={'slide'}
-          transparent={false}
-          visible={this.state.showModal}
-          onRequestClose={() => this.toggleModal()}
-        >
-          <View style={styles.modal}>
-            <Text>Feedback: {this.state.feedback}</Text>
-            <Text>Email: {this.state.email}</Text>
-            <Text>Thank you for your feedback!</Text>
-          </View>
-          <Button
-            onPress={() => {
-              this.toggleModal();
-              this.resetForm();
-            }}
-            color='#808080'
-            title='Close'
-          />
-        </Modal>
       </ScrollView>
     );
   }
