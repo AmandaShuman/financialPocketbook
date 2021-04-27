@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { Text, FlatList } from 'react-native';
-import { Card, ListItem } from 'react-native-elements';
+import { Card, ListItem, Input } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
-import TouchableScale from 'react-native-touchable-scale'; // https://github.com/kohver/react-native-touchable-scale
 import { connect } from 'react-redux';
-import { baseUrl } from '../shared/baseUrl';
 import Loading from './LoadingComponent';
 
 const mapStateToProps = state => {
@@ -24,7 +22,7 @@ const IncomeSummary = () => {
 }
 
 class Income extends Component {
-  
+
   static navigationOptions = {
     title: 'Income'
   }
@@ -35,8 +33,10 @@ class Income extends Component {
       return (
         <ListItem
           title={item.name}
-        >
-        </ListItem>
+          input={{
+            placeholder: '$0.00'
+          }}
+        />        
       )
     };
 
