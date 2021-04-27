@@ -1,14 +1,22 @@
 import React, { Component } from 'react';
-import { View, Platform, StyleSheet } from 'react-native';
-import { Icon } from 'react-native-elements';
-import { createStackNavigator } from 'react-navigation-stack';
-import { createDrawerNavigator } from 'react-navigation-drawer';
-import { createAppContainer } from 'react-navigation';
 import Home from './HomeComponent';
 import Income from './IncomeComponent';
 import Expenses from './ExpensesComponent';
 import ExpenseInfo from './ExpensesDetailComponent';
 import Feedback from './FeedbackComponent';
+import { View, Platform, StyleSheet } from 'react-native';
+import { Icon } from 'react-native-elements';
+import { createStackNavigator } from 'react-navigation-stack';
+import { createDrawerNavigator, DrawerItems } from 'react-navigation-drawer';
+import { createAppContainer } from 'react-navigation';
+import SafeAreaView from 'react-native-safe-area-view';
+import { connect } from 'react-redux';
+//import the thunked action creators
+import { fetchIncome } from '../redux/ActionCreators';
+
+const mapDispatchToProps = {
+  fetchIncome
+}
 
 const HomeNavigator = createStackNavigator(
   {
@@ -171,6 +179,12 @@ const MainNavigator = createDrawerNavigator(
 const AppNavigator = createAppContainer(MainNavigator);
 
 class Main extends Component {
+
+  //want main component to call the action creators after the component has been created
+  componentDidMount() {
+    this.props.fetchIncome();
+  }
+
   render() {
     return (
       <View style={{
@@ -191,4 +205,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Main;
+export default connect(null, mapDispatchToProps)(Main);

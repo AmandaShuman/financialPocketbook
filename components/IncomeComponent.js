@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { Text, FlatList } from 'react-native';
 import { Card, ListItem } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
-import { INCOME } from '../shared/income';
+import TouchableScale from 'react-native-touchable-scale'; // https://github.com/kohver/react-native-touchable-scale
+import { connect } from 'react-redux';
+import { baseUrl } from '../shared/baseUrl';
+import Loading from './LoadingComponent';
+
+const mapStateToProps = state => {
+  return {
+    income: state.income
+  };
+}
 
 const IncomeSummary = () => {
   return (
@@ -15,13 +24,7 @@ const IncomeSummary = () => {
 }
 
 class Income extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      income: INCOME
-    }
-  }
-
+  
   static navigationOptions = {
     title: 'Income'
   }
@@ -32,15 +35,27 @@ class Income extends Component {
       return (
         <ListItem
           title={item.name}
-        />
+        >
+        </ListItem>
       )
     };
+
+    if (this.props.income.isLoading) {
+      return <Loading />;
+    }
+    if (this.props.income.errMess) {
+      return (
+        <View>
+          <Text>{this.props.income.errMess}</Text>
+        </View>
+      );
+    }
 
     return (
       <ScrollView>
         <IncomeSummary />
         <FlatList
-          data={this.state.income}
+          data={this.props.income.income}
           renderItem={renderIncomeItem}
           keyExtractor={item => item.id.toString()}
         />
@@ -49,4 +64,4 @@ class Income extends Component {
   }
 }
 
-export default Income;
+export default connect(mapStateToProps)(Income);
