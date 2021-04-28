@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { ScrollView, Text, TextInput, View, Button, StyleSheet, Alert } from 'react-native';
-import { Card, Input } from 'react-native-elements';
+import { ScrollView, Text, View, StyleSheet, Alert } from 'react-native';
+import { Card, Input, Button, Icon } from 'react-native-elements';
+import * as MailComposer from 'expo-mail-composer';
 
 const getInitialState = () => ({
   feedback: '',
@@ -47,6 +48,14 @@ class Feedback extends Component {
     title: 'Feedback'
   }
 
+  sendMail() {
+    MailComposer.composeAsync({
+      recipients: ['financial_pocketbook@gmail.com'],
+      subject: 'Feedback',
+      body: 'To whom it may concern. I have the following feedback for you:'
+    });
+  }
+
   render() {
     return (
       <ScrollView>
@@ -58,12 +67,23 @@ class Feedback extends Component {
           <Text>Washington, DC 20008</Text>
           <Text style={{ marginBottom: 10 }}>U.S.A.</Text>
           <Text>Email: financial_pocketbook@gmail.com</Text>
+          <Button
+            title="Send Email"
+            buttonStyle={{ backgroundColor: '#168118', margin: 30 }}
+            icon={<Icon
+              name='envelope-o'
+              type='font-awesome'
+              color='#fff'
+              iconStyle={{ marginRight: 10 }}
+            />}
+            onPress={() => this.sendMail()}
+          />
         </Card>
         <Card>
           <Text>Or send us feedback directly</Text>
           <View>
             <Input
-              label='Feedback'
+              label='Feedback - Financial Pocketbook'
               leftIcon={{ type: 'font-awesome', name: 'comment' }}
               placeholder='Enter your feedback'
               containerStyle={{ padding: 5 }}
