@@ -4,6 +4,7 @@ import Income from './IncomeComponent';
 import Expenses from './ExpensesComponent';
 import ExpenseInfo from './ExpensesDetailComponent';
 import Feedback from './FeedbackComponent';
+import Login from './LoginComponent';
 import { View, Platform, StyleSheet } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { createStackNavigator } from 'react-navigation-stack';
@@ -17,6 +18,29 @@ import { fetchIncome } from '../redux/ActionCreators';
 const mapDispatchToProps = {
   fetchIncome
 }
+
+const LoginNavigator = createStackNavigator(
+  {
+    Login: { screen: Login }
+  },
+  {
+    defaultNavigationOptions: ({ navigation }) => ({
+      headerStyle: {
+        backgroundColor: '#168118'
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        color: '#fff'
+      },
+      headerLeft: <Icon
+        name='sign-in'
+        type='font-awesome'
+        iconStyle={styles.stackIcon}
+        onPress={() => navigation.toggleDrawer()}
+      />
+    })
+  }
+);
 
 const HomeNavigator = createStackNavigator(
   {
@@ -113,6 +137,19 @@ const FeedbackNavigator = createStackNavigator(
 
 const MainNavigator = createDrawerNavigator(
   {
+    Login: {
+      screen: LoginNavigator,
+      navigationOptions: {
+        drawerIcon: ({ tintColor }) => (
+          <Icon
+            name='sign-in'
+            type='font-awesome'
+            size={24}
+            color={tintColor}
+          />
+        )
+      }
+    },
     Home: {
       screen: HomeNavigator,
       navigationOptions: {
@@ -167,6 +204,7 @@ const MainNavigator = createDrawerNavigator(
     }
   },
   {
+    initialRouteName: 'Home',
     drawerBackgroundColor: '#3e9c35',
 
     contentOptions: {
