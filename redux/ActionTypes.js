@@ -1,3 +1,6 @@
 export const INCOME_LOADING = 'INCOME_LOADING';
 export const ADD_INCOME = 'ADD_INCOME';
 export const INCOME_FAILED = 'INCOME_FAILED';
+
+export const ADD_FAVORITE = 'ADD_FAVORITE';
+export const DELETE_FAVORITE = 'DELETE_FAVORITE';
