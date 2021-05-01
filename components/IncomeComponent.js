@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, FlatList } from 'react-native';
-import { Card, ListItem, Input } from 'react-native-elements';
+import { Card, ListItem } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
 import { connect } from 'react-redux';
 import Loading from './LoadingComponent';

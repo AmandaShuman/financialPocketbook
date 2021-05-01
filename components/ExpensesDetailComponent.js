@@ -25,6 +25,9 @@ function RenderExpenseItems({ expenseDetail }) {
     return (
       <ListItem
         title={item.name}
+        input={{
+          placeholder: '$0.00'
+        }}
       />
     );
   };

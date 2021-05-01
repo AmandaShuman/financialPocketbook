@@ -32,6 +32,7 @@ class Expenses extends Component {
       return (
         <ListItem
           title={item.name}
+          chevron
           onPress={() => navigate('ExpenseInfo', { expenseId: item.id })}
         />
       )
