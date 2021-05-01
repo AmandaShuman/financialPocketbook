@@ -5,7 +5,7 @@ import Expenses from './ExpensesComponent';
 import ExpenseInfo from './ExpensesDetailComponent';
 import Feedback from './FeedbackComponent';
 import Login from './LoginComponent';
-import { View, Platform, StyleSheet } from 'react-native';
+import { View, Platform, StyleSheet, ScrollView, Image, Text } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createDrawerNavigator, DrawerItems } from 'react-navigation-drawer';
@@ -135,6 +135,28 @@ const FeedbackNavigator = createStackNavigator(
   }
 );
 
+const CustomDrawerContentComponent = props => (
+  <ScrollView>
+    <SafeAreaView
+      style={styles.container}
+      forceInset={{ top: 'always', horizontal: 'never' }}
+    >
+      <View style={styles.drawerHeader}>
+        <View style={{ flex: 1 }}>
+          <Image
+            source={require('./images/logo.png')}
+            style={styles.drawerImage}
+          />
+        </View>
+        <View style={{ flex: 2 }}>
+          <Text style={styles.drawerHeaderText}>Financial Pocketbook</Text>
+        </View>
+      </View>
+      <DrawerItems {...props} />
+    </SafeAreaView>
+  </ScrollView>
+);
+
 const MainNavigator = createDrawerNavigator(
   {
     Login: {
@@ -205,12 +227,13 @@ const MainNavigator = createDrawerNavigator(
   },
   {
     initialRouteName: 'Home',
-    drawerBackgroundColor: '#3e9c35',
+    drawerBackgroundColor: '#3E9C35',
 
     contentOptions: {
       activeTintColor: "#FFF",
       inactiveTintColor: "#7B32A0",
     },
+    contentComponent: CustomDrawerContentComponent
   }
 );
 
@@ -236,6 +259,27 @@ class Main extends Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  },
+  drawerHeader: {
+    backgroundColor: '#3E9C35',
+    height: 140,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
+    flexDirection: 'row'
+  },
+  drawerHeaderText: {
+    color: '#fff',
+    fontSize: 24,
+    fontWeight: 'bold'
+  },
+  drawerImage: {
+    margin: 10,
+    height: 60,
+    width: 60
+  },
   stackIcon: {
     marginLeft: 10,
     color: '#fff',
