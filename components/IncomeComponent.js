@@ -34,11 +34,15 @@ class Income extends Component {
         <ListItem
           title={item.name}
           input={{
-            placeholder: '$0.00'
+            placeholder: '$0.00',
+            keyboardType: 'number-pad',
+            onChangeText: amount => this.props.income.updateIncome(item.id, amount)
           }}
         />        
       )
     };
+
+    const Total = amount.reduce((acc, item) => (acc += item), 0).toFixed(2);
 
     if (this.props.income.isLoading) {
       return <Loading />;
@@ -59,6 +63,7 @@ class Income extends Component {
           renderItem={renderIncomeItem}
           keyExtractor={item => item.id.toString()}
         />
+        <Total>Total: {Total}</Total>
       </ScrollView>
     );
   }

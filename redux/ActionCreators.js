@@ -36,6 +36,11 @@ export const incomeFailed = errMess => ({
 });
 
 export const addIncome = income => ({
-  type: ActionTypes.ADD_INCOME,
+  type: ActionTypes.ADD_INCOMES,
+  payload: income
+});
+
+export const updateIncome = income => ({
+  type: ActionTypes.UPDATE_INCOME,
   payload: income
 });
